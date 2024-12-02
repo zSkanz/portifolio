@@ -1,0 +1,48 @@
+<%- include('partials/header') %>
+
+<!-- Adicionando o link para o Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="container text-center">
+    <div class="jumbotron mt-4">
+        <h1 class="display-4">Hello, I'm zSkanz!</h1>
+        <p class="lead">Hello! I am a passionate Roblox developer, specializing in both back-end and front-end. With solid experience in creating games and systems within the Roblox platform, I have extensive knowledge in programming, game design, and the implementation of advanced features. My work ranges from the conception of creative ideas to technical execution, ensuring engaging and innovative gaming experiences, <strong>contributing to a total of <%= amountOfVisits %> visits</strong>.</p>
+        <hr class="my-4">
+        <p>Check out some of my projects below.</p>
+        <a class="btn btn-primary btn-lg" href="#projects" role="button">Learn more</a>
+    </div>
+
+    <h2 id="projects">Worked On</h2><br>
+
+    <div class="row">
+        <% projects.forEach(project => { %>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="<%= project.imageUrl %>" class="card-img-top" alt="<%= project.title %>">
+                <div class="card-body">
+                    <h5 class="card-title"><%= project.title %></h5>
+                    <p class="card-text">Visits: <%= project.visits %></p>
+                    <a target="_blank" href="<%= project.link %>" class="btn btn-primary">Visit the Game</a>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div id="contact" class="contact-section mt-4">
+                <h2>Contact Me</h2>
+                <p>If you would like to get in touch, you can reach me via Discord or Gmail:</p>
+                <a href="https://discord.gg/GGUhHdFGKT" target="_blank" class="btn btn-outline-secondary">
+                    <i class="fab fa-discord"></i> Discord
+                </a>
+                <a href="mailto:zskanz12@gmail.com" class="btn btn-outline-secondary">
+                    <i class="fas fa-envelope"></i> Gmail
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
