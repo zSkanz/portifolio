@@ -3,7 +3,7 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 
-const port = 3005;
+const port = 3000;
 const app = express();
 
 app.set('view engine', 'ejs');
