@@ -5,6 +5,7 @@ const path = require('path');
 
 const port = 3000;
 const app = express();
+var totalOfVisits = 0;
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -55,14 +56,17 @@ app.get('/', async (req, res) => {
     const projects = JSON.parse(fs.readFileSync(projectsFilePath, 'utf-8'));
     
     var amountOfVisits = 0;
+    totalOfVisits ++;
+
+    console.log("Visits: " + totalOfVisits);
 
     for (let project of projects) {
         project.universeId = await getUniverseId(project.roblox_game_id);
         project.imageUrl = await getRobloxGameImageUrl(project.universeId);
         project.link = `https://www.roblox.com/games/${project.roblox_game_id}`;
         var currentAmount = await getRobloxgameVisits(project.universeId)
-        amountOfVisits += currentAmount;
-        project.visits = abbreviateNumber(currentAmount);
+        amountOfVisits += currentAmount || 0;
+        project.visits = abbreviateNumber(currentAmount || 0);
     }
 
     res.render('index', {projects, amountOfVisits: abbreviateNumber(amountOfVisits)});
